@@ -48,9 +48,12 @@ First stable release.
   (skill name, Cursor rule filename, and frontmatter `name` are all
   `authenticity-check`).
 - Multi-tool support: Claude Code, Cursor, Codex, Antigravity, Gemini CLI,
-  Pi Coder, OpenCode, and GitHub Copilot, via `SKILL.md`, `AGENTS.md`,
-  `.cursor/rules/authenticity-check.mdc`, `GEMINI.md`, and
-  `.github/copilot-instructions.md`.
+  Pi Coder, OpenCode, GitHub Copilot, Windsurf, Cline, Continue, Zed, and
+  Aider, via `SKILL.md`, `AGENTS.md`, `.cursor/rules/authenticity-check.mdc`,
+  `GEMINI.md`, `.github/copilot-instructions.md`, `.windsurfrules`,
+  `.clinerules`, `.continue/rules/authenticity-check.md`, and
+  `CONVENTIONS.md`. Every adapter points the agent at the same `SKILL.md`
+  and `references/`, so the workflow is identical across tools.
 - Relocated-signature hardening. Step 0b carries a second density override
   (alongside the chat-UI-contamination override): clean, marker-free prose
   with uniform or templated rhythm is treated at high scrutiny rather than

@@ -5,7 +5,7 @@
 ![type](https://img.shields.io/badge/type-pure--prompt%20skill-purple)
 ![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
 ![mode](https://img.shields.io/badge/mode-diagnostic%20only-red)
-![tools](https://img.shields.io/badge/works%20with-8%20AI%20coding%20tools-teal)
+![tools](https://img.shields.io/badge/works%20with-13%20AI%20coding%20tools-teal)
 ![release](https://img.shields.io/github/v/release/aihxp/authenticity-check?label=release&color=blue)
 
 A standalone, pure-prompt skill that scores how authentically a piece of text
@@ -120,6 +120,11 @@ its canonical upstream is the humanizer repo, and the obligations below.
 | Pi Coder | `AGENTS.md` | Point Pi Coder at this repo / its `AGENTS.md` |
 | OpenCode | `AGENTS.md` or `SKILL.md` | Copy the skill into OpenCode's skills directory, or keep `AGENTS.md` in the project |
 | GitHub Copilot | `.github/copilot-instructions.md` | Copy `.github/copilot-instructions.md` + `SKILL.md` + `references/` into the target repository |
+| Windsurf | `.windsurfrules` | Keep `.windsurfrules` + `SKILL.md` + `references/` in the project Windsurf opens |
+| Cline | `.clinerules` | Keep `.clinerules` + `SKILL.md` + `references/` in the workspace Cline runs in |
+| Continue | `.continue/rules/authenticity-check.md` | Keep `.continue/rules/authenticity-check.md` + `SKILL.md` + `references/` in the project |
+| Zed | `AGENTS.md` or `.continue/rules/authenticity-check.md` | Zed reads `AGENTS.md` (already present); the Continue rule also applies if used |
+| Aider | `CONVENTIONS.md` | `aider --read CONVENTIONS.md`, or set `read: CONVENTIONS.md` in `.aider.conf.yml`; keep `SKILL.md` + `references/` in the repo |
 
 The Cursor rule and the frontmatter `name` are `authenticity-check`, distinct
 from humanizer's `humanizer`, so both skills can be installed side by side
@@ -178,6 +183,10 @@ AGENTS.md                         cross-tool entry point (Codex, Antigravity, Op
 GEMINI.md                         Gemini CLI context
 .cursor/rules/authenticity-check.mdc  Cursor project rule (named to not collide with humanizer)
 .github/copilot-instructions.md   GitHub Copilot instructions
+.windsurfrules                    Windsurf rules
+.clinerules                       Cline rules
+.continue/rules/authenticity-check.md  Continue / Zed rule
+CONVENTIONS.md                    Aider conventions
 references/tell-patterns.md       vendored, synced from humanizer: the 32-pattern catalog (Pass 1)
 references/do-not-flag.md         vendored, synced from humanizer: false positives, human markers (Pass 2)
 references/voice-matching.md      vendored, synced from humanizer: voice reading (Pass 4)
