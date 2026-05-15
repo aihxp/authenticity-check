@@ -6,6 +6,7 @@
 ![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
 ![mode](https://img.shields.io/badge/mode-diagnostic%20only-red)
 ![tools](https://img.shields.io/badge/works%20with-8%20AI%20coding%20tools-teal)
+![release](https://img.shields.io/github/v/release/aihxp/authenticity-check?label=release&color=blue)
 
 A standalone, pure-prompt skill that scores how authentically a piece of text
 reads as the work of a real human author, and flags the specific spans that
@@ -15,6 +16,21 @@ dependencies, no network access. Its tools are read-only by design.
 
 It is the evaluative counterpart to the `humanizer` skill. This one
 diagnoses. It does not rewrite.
+
+## Where this comes from
+
+This skill is the diagnostic half of a pair. Its detection criteria descend
+from the voice-preservation logic that powers
+[Scriveno](https://github.com/aihxp/scriveno) (formerly Scriven), an
+AI-native longform writing, publishing, and translation pipeline whose core
+promise is that drafted prose should sound like the writer, not like AI.
+[`humanizer`](https://github.com/aihxp/humanizer) lifted the de-slop,
+restraint, and voice-matching layer of that pipeline into a standalone
+rewrite skill. `authenticity-check` is the read-only counterpart: it applies
+the same catalog and the same restraint to *diagnose* rather than transform,
+and it vendors humanizer's criteria so the two agree on what a tell is. If
+you want the rewrite, use humanizer. If you want the whole writing pipeline,
+see Scriveno (npm package: `scriveno-cli`).
 
 ## What it does
 
@@ -128,6 +144,20 @@ For a "does this still sound like me" check, do one of:
 Every run returns the report: band and score, flagged spans, what was
 deliberately not flagged, the score basis, a caveat, and a next step. It
 never returns rewritten prose.
+
+## Verification
+
+`evals/evals.json` holds the verification cases (an AI-heavy text, a
+voice-deviation check, a restraint case, a detector-evasion refusal, an
+oblique trigger, and a diagnose-then-"just fix it" boundary). `evals/RESULTS.md`
+records a blind verification battery: every case run as an isolated diagnosis
+with no access to the expected answer, plus a known-vs-non-known battery and a
+relocated-signature regression set. The regression set exists because the
+hardest case is the one that matters most: AI prose with the slop vocabulary
+removed but the uniform rhythm kept must still read low, while genuine careful
+human prose, even when formal and clean, must not be over-flagged. These files
+are documentation and verification only; they are not part of the runtime
+skill.
 
 ## Scope
 

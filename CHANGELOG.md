@@ -51,4 +51,17 @@ First stable release.
   Pi Coder, OpenCode, and GitHub Copilot, via `SKILL.md`, `AGENTS.md`,
   `.cursor/rules/authenticity-check.mdc`, `GEMINI.md`, and
   `.github/copilot-instructions.md`.
-- Verification eval set (`evals/evals.json`), MIT license.
+- Relocated-signature hardening. Step 0b carries a second density override
+  (alongside the chat-UI-contamination override): clean, marker-free prose
+  with uniform or templated rhythm is treated at high scrutiny rather than
+  biased toward a high score, because absent slop vocabulary is the
+  laundering, not evidence of a person. `references/scoring.md` makes the
+  human-marker test decisive (Part 1: Mixed signals requires credited markers
+  or a genuinely inserted region; uniform marker-free prose is Reads
+  AI-generated even when vocabulary is clean), enforces band/number
+  consistency (Part 2), and adds a symmetric restraint guard (Part 4) so
+  genuine careful human prose is still not scored low.
+- Verification eval set (`evals/evals.json`) plus a recorded blind
+  verification battery (`evals/RESULTS.md`): the six suite cases, a
+  known-vs-non-known battery, and the relocated-signature regression set, all
+  run as blind isolated diagnoses. MIT license.

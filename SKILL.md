@@ -131,10 +131,15 @@ promotional language (5), AI-vocabulary clustering (16), sycophantic tone (7),
 generic positive conclusion (13). Estimate roughly how many appear per 100
 words, then set the scrutiny level and announce it in the output header:
 
-- **Low (about 0 to 2 per 100 words): light scrutiny.** Likely human-first
-  text (a journal, rough notes, a real draft). Bias hard toward a high score
-  and a near-empty flag list. Over-flagging genuine human prose is the worst
-  error this skill can make; when density is low, restraint is the default.
+- **Low (about 0 to 2 per 100 words): light scrutiny**, unless the rhythm is
+  uniform and no human markers are present (the relocated-signature override
+  below). Likely human-first text (a journal, rough notes, a real draft).
+  Bias hard toward a high score and a near-empty flag list. Over-flagging
+  genuine human prose is the worst error this skill can make; when density is
+  low, restraint is the default. But low lexical density is evidence of a
+  human only when the text also carries human markers or variance; clean
+  vocabulary with even rhythm and no specificity is laundered prose, not a
+  low-density human draft.
 - **Medium (about 3 to 5 per 100 words): standard scrutiny.** Mixed
   authorship. Run the full catalog with the restraint of do-not-flag.md.
 - **High (6 or more per 100 words): full scrutiny.** AI-first text. Run the
@@ -144,6 +149,19 @@ This is calibration, not a number you report mechanically. One exception
 overrides density: any chat-UI contamination string (pattern 31) is decisive
 on its own and is always flagged, whatever the overall density, because its
 presence is near-certain confirmation rather than a weak signal.
+
+A second exception overrides density in the other direction, the
+relocated-signature override. If the dead-giveaway count is Low only because
+the vocabulary is clean, yet the text shows uniform rhythm or a templated
+parallel skeleton (the same shape resolved the same way throughout) and
+carries no concrete specificity or human markers (do-not-flag.md Part 2: a
+specific detail or number, a dated reference, mixed feeling, an idiosyncratic
+sentence-length swing, a strong unhedged opinion, trade idiolect), this is a
+relocated signature, not a human-first draft. The slop words being gone is
+the laundering itself, not evidence of a person. Treat scrutiny as at least
+High, do not apply the low-density high-score bias, and carry the finding into
+scoring: per scoring.md, uniform rhythm with no human markers is the Reads
+AI-generated band even when no catalog tell fired.
 
 ## The multi-pass diagnostic
 

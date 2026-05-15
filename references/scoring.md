@@ -21,11 +21,24 @@ skill's authenticity (how human it reads) are inverse views of the same axis.
   flags after Pass 2, strong human markers present, internal profile
   consistent. Pairs with humanizer "low density": little or nothing to do.
 - **Mixed signals.** Genuine human markers and real AI tells coexist, or one
-  region reads inserted. Pairs with humanizer "medium density".
-- **Reads AI-generated.** Dead-giveaway tells cluster, the rhythm is uniform,
-  or chat-UI contamination is present. Pairs with humanizer "high density".
+  region reads inserted. This band requires credited human markers to be
+  present, or a genuinely inserted region; uniform, marker-free prose is not
+  Mixed, it is the band below. Pairs with humanizer "medium density".
+- **Reads AI-generated.** Dead-giveaway tells cluster, OR the rhythm is
+  uniform, OR chat-UI contamination is present. Each is independently
+  sufficient. Uniform rhythm with no credited human markers is this band even
+  when the vocabulary is clean and no catalog tell fired: that is a relocated
+  signature, and clean word choice does not lift it. Pairs with humanizer
+  "high density".
 
 Report the band first; it is the part a human acts on. The number refines it.
+
+The discriminator between a careful human and a relocated signature is not
+vocabulary or formality; it is the presence of human markers and genuine
+variance. Genuine human prose, even when formal and clean, leaves
+fingerprints: a specific, an opinion, an idiosyncratic rhythm. Laundered AI
+prose is clean, even-rhythmed, and marker-free. Decide the band on that test,
+not on how inoffensive the words are.
 
 ## Part 2: The 0-100 score
 
@@ -83,6 +96,11 @@ points for genuine voice has miscounted.
   region in otherwise human prose.
 - 0-59, Reads AI-generated: clustered dead-giveaways, uniform rhythm, or any
   chat-UI contamination.
+
+The reported number must fall inside the chosen band's anchor range. A band
+and a number that disagree is a miscount, not a nuance: pick the band on the
+evidence and the Part 1 marker test, then place the number within that band.
+The same input must not land in different bands across runs.
 
 Do not over-precisify. "78" and "81" carry the same message; do not stage a
 debate between them. If two paragraphs of evidence point different ways, say
@@ -147,3 +165,14 @@ human markers you found and ask whether the evidence honestly supports the
 band. If a text is a person writing carefully, the correct output is a high
 score with a populated "Reads as human" section, not a hedge in the middle.
 Doing that well, and saying why, is the strongest evidence the skill worked.
+
+There is a symmetric error in the other direction, and it is just as real:
+scoring laundered, marker-free, uniform prose high merely because it is clean
+and lexically inoffensive. Restraint protects a careful human; it is not
+leniency toward emptiness. The test that separates the two is not vocabulary,
+it is whether the text carries human markers and genuine variance. Clean prose
+with even rhythm and not one specific, opinion, or idiosyncratic swing is a
+relocated signature: score it in the Reads AI-generated band and say why in
+the Score basis. Before finalizing a high score on clean prose, confirm you
+can name at least one real human marker; if you cannot, the correct output is
+a low score, not a comfortable high one.
