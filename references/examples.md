@@ -144,7 +144,7 @@ on-voice prose.
 
 ### Authenticity report
 Mode: voice-deviation vs VOICE.md
-Scrutiny: standard (from the density pre-check)
+Scrutiny: medium (from the density pre-check)
 
 Authenticity: Mixed signals   Score: 64/100
 (higher means it reads more authentically as a person's own work)

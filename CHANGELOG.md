@@ -3,6 +3,38 @@
 All notable changes to this skill are documented here. This project adheres
 to semantic versioning.
 
+## [1.1.1] - 2026-05-29
+
+Audit-and-fix patch. Re-vendor verification against humanizer current main
+plus documentation-drift fixes surfaced by a full markdown audit. No change
+to skill behavior, the band logic, or the diagnostic-only boundary.
+
+### Changed
+
+- Re-vendored `references/tell-patterns.md`, `references/do-not-flag.md`,
+  and `references/voice-matching.md` from humanizer current main; sync
+  stamps bumped to `2026-05-29 / 9632cf1`. Bodies of the first two are
+  byte-identical to the prior `e9404c9` sync (header stamp only);
+  `voice-matching.md` picks up the upstream "Scriven" -> "Scriveno"
+  rename.
+- `references/examples.md` Example 2 header: `Scrutiny: standard` ->
+  `Scrutiny: medium`, matching the SKILL.md output contract which accepts
+  `low | medium | high`. ("Standard scrutiny" was the description of the
+  medium-density tier in Step 0b; "medium" is the value to report.)
+- `evals/RESULTS.md`: `Skill version` 1.0.0 -> 1.1.1; sync-stamp references
+  updated to current.
+- `SKILL.md` `metadata.version` and `README.md` version badge bumped to
+  1.1.1.
+
+### Audit checklist (all green after fixes)
+
+Verified consistent across all 18 tracked markdown / adapter files:
+versions, "13 AI coding tools" claim, Step 0 / 0b / Pass 1-4 naming, scrutiny
+level values, sync stamps, output-contract section names and order, repo
+URLs, AGENTS.md tool enumeration, CHANGELOG date entries, file paths in the
+README Layout block. No `Step 0c` leakage from humanizer, no stale "8 tools"
+references, no version/badge mismatch.
+
 ## [1.1.0] - 2026-05-29
 
 Version-alignment release with the paired `humanizer` skill, which moved to

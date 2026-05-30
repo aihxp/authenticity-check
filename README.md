@@ -1,6 +1,6 @@
 # authenticity-check
 
-![version](https://img.shields.io/badge/version-1.1.0-blue)
+![version](https://img.shields.io/badge/version-1.1.1-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![type](https://img.shields.io/badge/type-pure--prompt%20skill-purple)
 ![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
@@ -94,8 +94,8 @@ its canonical upstream is the humanizer repo, and the obligations below.
 
 - **These three files are synced copies, not the source of truth:**
   `references/tell-patterns.md`, `references/do-not-flag.md`,
-  `references/voice-matching.md`. Last synced 2026-05-15 from humanizer
-  commit `e9404c9`. The stamp records the last criteria sync, not every
+  `references/voice-matching.md`. Last synced 2026-05-29 from humanizer
+  commit `9632cf1`. The stamp records the last criteria sync, not every
   humanizer commit; humanizer changes that do not touch the three vendored
   files (for example, adapter additions) do not require a re-vendor.
 - **Re-sync when humanizer's criteria change.** Do not edit the criteria in

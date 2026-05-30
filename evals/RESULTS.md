@@ -6,8 +6,8 @@ from blind, isolated agent runs, not a test script. Re-run when SKILL.md,
 `references/*`, or the vendored humanizer criteria change.
 
 - Date: 2026-05-15
-- Skill version: 1.0.0
-- Vendored criteria synced from humanizer commit e9404c9
+- Skill version: 1.1.1
+- Vendored criteria synced from humanizer commit 9632cf1
 - Method: each input run in a fresh, isolated subagent that saw only the input
   plus a pointer to SKILL.md and `references/`. Runners did not see
   `expected_output`, `expectations`, prior results, the other cases, or any
@@ -171,7 +171,7 @@ Native files only (vendored references untouched, per their sync contract):
 - `evals/RESULTS.md` - this record.
 
 Untouched: `references/tell-patterns.md`, `references/do-not-flag.md`,
-`references/voice-matching.md` (all vendored from humanizer @ e9404c9).
+`references/voice-matching.md` (all vendored from humanizer @ 9632cf1).
 
 ## Reproduction
 
