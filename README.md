@@ -1,6 +1,6 @@
 # authenticity-check
 
-![version](https://img.shields.io/badge/version-1.0.0-blue)
+![version](https://img.shields.io/badge/version-1.0.1-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![type](https://img.shields.io/badge/type-pure--prompt%20skill-purple)
 ![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
@@ -95,7 +95,9 @@ its canonical upstream is the humanizer repo, and the obligations below.
 - **These three files are synced copies, not the source of truth:**
   `references/tell-patterns.md`, `references/do-not-flag.md`,
   `references/voice-matching.md`. Last synced 2026-05-15 from humanizer
-  commit `e9404c9`.
+  commit `e9404c9`. The stamp records the last criteria sync, not every
+  humanizer commit; humanizer changes that do not touch the three vendored
+  files (for example, adapter additions) do not require a re-vendor.
 - **Re-sync when humanizer's criteria change.** Do not edit the criteria in
   this repo independently. A fix belongs upstream in humanizer and is then
   re-vendored here. Editing the copies in place makes the two repos drift and
@@ -129,7 +131,9 @@ its canonical upstream is the humanizer repo, and the obligations below.
 The Cursor rule and the frontmatter `name` are `authenticity-check`, distinct
 from humanizer's `humanizer`, so both skills can be installed side by side
 without collision. Every adapter points the agent at the same `SKILL.md` and
-`references/`, so the workflow is identical across tools.
+`references/`, so the workflow is identical across tools. The 13-tool count
+includes Zed as a distinct host even though Zed reads adapter files already
+present (`AGENTS.md` or the Continue rule); no Zed-specific adapter is needed.
 
 ## Usage
 
@@ -163,6 +167,11 @@ removed but the uniform rhythm kept must still read low, while genuine careful
 human prose, even when formal and clean, must not be over-flagged. These files
 are documentation and verification only; they are not part of the runtime
 skill.
+
+On short inputs (a single paragraph or two), the internal-consistency pass
+(Pass 3) needs at least three comparable chunks and is skipped; Step 0b plus
+Passes 1-2 carry the read, with the relocated-signature override holding
+short marker-free uniform inputs in the low band.
 
 ## Scope
 

@@ -19,7 +19,7 @@ description: >-
 allowed-tools: Read, Glob, Grep
 compatibility: claude-code, cursor, codex, antigravity, gemini-cli, pi-coder, opencode, copilot, windsurf, cline, continue, zed, aider
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Authenticity Check
@@ -151,17 +151,23 @@ on its own and is always flagged, whatever the overall density, because its
 presence is near-certain confirmation rather than a weak signal.
 
 A second exception overrides density in the other direction, the
-relocated-signature override. If the dead-giveaway count is Low only because
-the vocabulary is clean, yet the text shows uniform rhythm or a templated
-parallel skeleton (the same shape resolved the same way throughout) and
-carries no concrete specificity or human markers (do-not-flag.md Part 2: a
-specific detail or number, a dated reference, mixed feeling, an idiosyncratic
-sentence-length swing, a strong unhedged opinion, trade idiolect), this is a
-relocated signature, not a human-first draft. The slop words being gone is
-the laundering itself, not evidence of a person. Treat scrutiny as at least
-High, do not apply the low-density high-score bias, and carry the finding into
-scoring: per scoring.md, uniform rhythm with no human markers is the Reads
-AI-generated band even when no catalog tell fired.
+relocated-signature override. The trigger: the dead-giveaway count is Low
+only because the vocabulary is clean, yet the text shows uniform rhythm or a
+templated parallel skeleton (the same shape resolved the same way
+throughout) AND carries no concrete specificity or human markers (the
+`do-not-flag.md` Part 2 list: a specific detail or number, a dated reference,
+mixed feeling, an idiosyncratic sentence-length swing, a strong unhedged
+opinion, trade idiolect).
+
+The rationale: this is a relocated signature, not a human-first draft. The
+slop words being gone is the laundering itself, not evidence of a person.
+Clean vocabulary does not buy a uniform, marker-free passage out of the low
+band.
+
+The action: treat scrutiny as at least High, do not apply the low-density
+high-score bias, and carry the finding into scoring. Per `scoring.md`,
+uniform rhythm with no credited human markers is the Reads AI-generated band
+even when no catalog tell fired.
 
 ## The multi-pass diagnostic
 

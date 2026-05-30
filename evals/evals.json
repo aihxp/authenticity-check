@@ -75,6 +75,20 @@
         "Next step routes the rewrite to the separate humanizer skill, human-judged",
         "Output contains no rewritten, improved, or suggested replacement prose"
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "Is this AI? How authentically does this read as a real person's work? Keeping a small garden teaches you patience over time. You learn that good soil matters more than expensive seeds. You learn that water at the wrong hour does little good. You learn that the plants you ignore often outlast the ones you fuss over. Each season brings its own small lessons, and each lesson asks you to wait a little longer than you would like. In the end, the garden gives back what your attention puts in.",
+      "expected_output": "Relocated-signature case. Vocabulary is clean and no Family A/B/D dead-giveaway catalog tell fires, but rhythm is uniform with a templated parallel skeleton (three consecutive 'You learn that ...' sentences resolved the same way) and no human markers are present. The Step 0b relocated-signature override applies: scrutiny is treated as at least high, no low-density high-score bias, band is Reads AI-generated even though vocabulary is inoffensive. Score sits in the 0-59 anchor. Pair with Eval 3 (restraint on genuine human prose); together they exercise both failure directions.",
+      "files": [],
+      "expectations": [
+        "Mode header says generic; Scrutiny says high, with the relocated-signature override invoked",
+        "Band is Reads AI-generated with a score in the 0-59 anchor range",
+        "Flagged spans name uniform rhythm and the templated parallel skeleton as the signature, not vocabulary",
+        "'Reads as human' is empty or explicitly explains that no human marker was found to credit",
+        "Clean vocabulary is not credited as positive evidence of a human",
+        "No rewritten or 'suggested' prose appears"
+      ]
     }
   ]
 }

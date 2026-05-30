@@ -3,6 +3,42 @@
 All notable changes to this skill are documented here. This project adheres
 to semantic versioning.
 
+## [1.0.1] - 2026-05-15
+
+Post-release polish and verification hardening. No change to the band logic
+or the diagnostic-only boundary; this release clarifies precedence, adds a
+worked example and an eval case for the relocated-signature property, and
+documents known limitations.
+
+### Added
+
+- Fifth worked example in `references/examples.md` for the
+  relocated-signature case (clean vocabulary, uniform rhythm, no human
+  markers): the canonical "laundered AI slop" demonstration, paired with
+  Example 3 (restraint on careful human prose) so the two failure
+  directions are visible side by side.
+- Seventh case in `evals/evals.json` formalizing the relocated-signature
+  regression in the runtime eval set (previously only in
+  `evals/RESULTS.md` prose).
+- Anaphora precedence note in `references/scoring.md` Part 1: a single
+  anaphora is still a human rhetorical choice per `do-not-flag.md`, but
+  anaphora used as the structural skeleton of a marker-free uniform
+  passage is the template, and the Step 0b relocated-signature override
+  governs.
+- Regression-pass criteria and a "Known untested edge cases" section in
+  `evals/RESULTS.md` (voice-deviation mode interacting with the override).
+
+### Changed
+
+- Split the dense Step 0b relocated-signature override paragraph in
+  `SKILL.md` into three short paragraphs (trigger, rationale, action) for
+  readability.
+- Added Zed to the `AGENTS.md` enumeration of tools that read the file.
+- `README.md`: footnote on the 13-tool count (Zed shares files with
+  `AGENTS.md` / the Continue rule); short note that Pass 3 mostly engages
+  on multi-paragraph inputs; clarification that the vendored-criteria sync
+  stamp records the last criteria sync, not every humanizer commit.
+
 ## [1.0.0] - 2026-05-15
 
 First stable release.

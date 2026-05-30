@@ -40,6 +40,16 @@ fingerprints: a specific, an opinion, an idiosyncratic rhythm. Laundered AI
 prose is clean, even-rhythmed, and marker-free. Decide the band on that test,
 not on how inoffensive the words are.
 
+A precedence note on anaphora. `do-not-flag.md` Part 2 credits deliberate
+repetition for emphasis (a single anaphora) as a human rhetorical choice.
+That credit does not apply when anaphora is the entire structural skeleton
+of a marker-free uniform passage: in that case the repetition is the
+template, not the rhetoric, and the Step 0b relocated-signature override
+governs. Co-occurrence (anaphora plus uniform rhythm plus zero credited
+markers) overrides the lone-anaphora credit. The single-anaphora-in-otherwise-
+varied-prose case still wins for the writer; the anaphora-as-skeleton case
+does not.
+
 ## Part 2: The 0-100 score
 
 Higher means it reads more authentically as a person's own work. Start from a

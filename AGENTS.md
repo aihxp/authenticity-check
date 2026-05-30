@@ -5,7 +5,7 @@ set that scores how authentically a piece of text reads as the work of a real
 human author and flags the spans that read as AI-generated, AI-templated, or
 generically derivative. No scripts, no dependencies, no network access; tools
 are read-only. It is the entry point for any AI coding tool that reads
-`AGENTS.md` (Codex, OpenCode, Antigravity, Pi Coder, and others).
+`AGENTS.md` (Codex, OpenCode, Antigravity, Pi Coder, Zed, and others).
 
 It is the evaluative counterpart to the separate `humanizer` skill. This one
 diagnoses. It does not rewrite.

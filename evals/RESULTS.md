@@ -187,3 +187,21 @@ Untouched: `references/tell-patterns.md`, `references/do-not-flag.md`,
    hold): Comparison C must read Reads AI-generated 0-59 and be stable across
    at least two runs; Eval 3 and Comparison B must stay Reads human, high,
    near-empty flags; Eval 2 must stay Mixed signals, 60-84.
+
+### Regression pass criteria
+
+A blind re-run passes when bands match and numbers fall inside their band's
+anchor range. Score deltas of about five points within the same band are
+LLM variance, not a regression. The relocated-signature regression set
+passes when Comparison C (now also `evals/evals.json` case 7) reads in the
+0-59 band across at least two independent blind runs.
+
+### Known untested edge cases
+
+- Voice-deviation mode interacting with the relocated-signature override:
+  clean, marker-free, uniform text against a terse-aphoristic `VOICE.md`.
+  The override does not condition on mode, so it could in principle fire
+  during voice-deviation runs against a profile that legitimately calls for
+  terse aphorism. No eval input currently exercises this; if it surfaces in
+  practice, add a case in voice-deviation mode with a terse-aphoristic voice
+  baseline.
