@@ -19,7 +19,7 @@ description: >-
 allowed-tools: Read, Glob, Grep
 compatibility: claude-code, cursor, codex, antigravity, gemini-cli, pi-coder, opencode, copilot, windsurf, cline, continue, zed, aider
 metadata:
-  version: 1.0.1
+  version: 1.1.0
 ---
 
 # Authenticity Check

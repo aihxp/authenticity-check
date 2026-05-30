@@ -1,6 +1,6 @@
 # authenticity-check
 
-![version](https://img.shields.io/badge/version-1.0.1-blue)
+![version](https://img.shields.io/badge/version-1.1.0-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![type](https://img.shields.io/badge/type-pure--prompt%20skill-purple)
 ![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)

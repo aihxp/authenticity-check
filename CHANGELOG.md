@@ -3,7 +3,21 @@
 All notable changes to this skill are documented here. This project adheres
 to semantic versioning.
 
-## [1.0.1] - 2026-05-15
+## [1.1.0] - 2026-05-29
+
+Version-alignment release with the paired `humanizer` skill, which moved to
+`v1.1.0` after vendoring the same five additional tool adapters (Windsurf,
+Cline, Continue, Zed, Aider). `authenticity-check` shipped those adapters
+in its `v1.0.0`, so there is no new functional change here over `v1.0.1`;
+this bump exists so the diagnose/rewrite pair carries the same minor
+version. Consumers tracking either repo can pin both at `^1.1.0`.
+
+### Changed
+
+- `SKILL.md` `metadata.version` and the `README.md` version badge bumped
+  from `1.0.1` to `1.1.0`.
+
+## [1.0.1] - 2026-05-29
 
 Post-release polish and verification hardening. No change to the band logic
 or the diagnostic-only boundary; this release clarifies precedence, adds a
