@@ -117,7 +117,7 @@ guess is instantly correctable.
    the catalog and the internal-consistency heuristics only. Do not invent a
    persona to measure against; an imagined target voice is its own failure.
 
-This discovery is filesystem-generic. It interoperates with Scriven, Pillars,
+This discovery is filesystem-generic. It interoperates with Scriveno, Pillars,
 or any project that keeps a voice file, without depending on any of them, and
 without assuming this skill is the only one installed.
 
