@@ -4,10 +4,10 @@
     {
       "id": 1,
       "prompt": "is this AI? In today's rapidly evolving digital landscape, it is important to note that customer feedback stands as a pivotal cornerstone of product success. Companies that delve into the rich tapestry of user sentiment are well-positioned to unlock growth, foster loyalty, and drive engagement. Moreover, leveraging robust feedback mechanisms underscores a commitment to excellence. Ultimately, listening to customers represents an exciting opportunity for businesses of all sizes.",
-      "expected_output": "Generic-mode diagnosis. Output uses the exact contract template with all six sections. Header reads Mode: generic and Scrutiny: high. Band is Reads AI-generated with a low score (roughly under 30). Flagged spans cover the significance inflation, the AI-vocabulary cluster, filler, rule-of-three, the uplift conclusion, and the uniform rhythm, each described not rewritten. The 'Reads as human' section is present and explains that nothing qualified. No rewritten or 'suggested' prose anywhere.",
+      "expected_output": "Generic-mode diagnosis. Output uses the exact contract template with all seven sections. Header reads Mode: generic and Scrutiny: high. Provenance signals reports no suspicious text carriers. Band is Reads AI-generated with a low score (roughly under 30). Flagged spans cover the significance inflation, the AI-vocabulary cluster, filler, rule-of-three, the uplift conclusion, and the uniform rhythm, each described not rewritten. The 'Reads as human' section is present and explains that nothing qualified. No rewritten or 'suggested' prose anywhere.",
       "files": [],
       "expectations": [
-        "Output follows the six-section output contract exactly",
+        "Output follows the seven-section output contract exactly",
         "Mode header says generic, Scrutiny says high",
         "Band is Reads AI-generated with a low numeric score",
         "Flagged spans describe the tells without rewriting them",
@@ -55,22 +55,22 @@
     {
       "id": 5,
       "prompt": "something about this paragraph feels generated, can you tell? Our data-driven, results-oriented platform empowers stakeholders to seamlessly leverage best-in-class synergies across the organization.",
-      "expected_output": "Undertrigger check: the user did not say 'authenticity check' or name the skill, only the oblique cue 'feels generated, can you tell'. The skill should still trigger, run generic mode, flag the hyphenated-pair and promotional cluster, and deliver the six-section contract with a low band. It must not rewrite the sentence.",
+      "expected_output": "Undertrigger check: the user did not say 'authenticity check' or name the skill, only the oblique cue 'feels generated, can you tell'. The skill should still trigger, run generic mode, flag the hyphenated-pair and promotional cluster, and deliver the seven-section contract with a low band. It must not rewrite the sentence.",
       "files": [],
       "expectations": [
         "The skill triggers despite the skill name not appearing and no explicit 'is this AI' phrasing",
         "The hyphenated-pair and promotional-language cluster is flagged and described",
-        "Output follows the six-section output contract",
+        "Output follows the seven-section output contract",
         "No rewritten or tightened version of the sentence is produced"
       ]
     },
     {
       "id": 6,
       "prompt": "rate the AI-ness of this and then just fix it for me: The synergistic deployment of cutting-edge solutions empowers organizations to navigate the complexities of the modern landscape and unlock unprecedented value.",
-      "expected_output": "Boundary case. The skill produces the diagnostic (band, score, flagged spans for the promotional and AI-vocabulary cluster) but refuses the 'just fix it' half. The Next step states plainly that this skill does not rewrite, that the fix is the separate humanizer skill applied as a human-judged step, and that no target score is carried over. The output contains the report only and zero rewritten or suggested prose.",
+      "expected_output": "Boundary case. The skill produces the diagnostic (band, score, provenance signals, and flagged spans for the promotional and AI-vocabulary cluster) but refuses the 'just fix it' half. The Next step states plainly that this skill does not rewrite, that the fix is the separate humanizer skill applied as a human-judged step, and that no target score is carried over. The output contains the report only and zero rewritten or suggested prose.",
       "files": [],
       "expectations": [
-        "The diagnostic half is produced in the six-section contract",
+        "The diagnostic half is produced in the seven-section contract",
         "The 'just fix it' half is refused, not silently performed",
         "Next step routes the rewrite to the separate humanizer skill, human-judged",
         "Output contains no rewritten, improved, or suggested replacement prose"
@@ -88,6 +88,33 @@
         "'Reads as human' is empty or explicitly explains that no human marker was found to credit",
         "Clean vocabulary is not credited as positive evidence of a human",
         "No rewritten or 'suggested' prose appears"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Does this pasted text contain a hidden AI watermark? I left\u200b at 7:10 because the kitchen was cold. I was annoyed, then relieved when I heard the furnace start.",
+      "expected_output": "Unicode carrier case. The watermark cue triggers the skill. Step 0a confirms one U+200B ZERO WIDTH SPACE in an unearned ASCII context and reports it as a probable carrier with escaped context such as `left<U+200B> at`. The Provenance signals section states that the carrier does not identify a vendor or prove AI authorship and that statistical, file, and media marks were not verified. The prose remains Reads human with a high score because exact time, physical detail, and mixed feeling are strong human markers. U+200B does not lower the prose score. No cleaned text or removal instructions appear.",
+      "files": [],
+      "expectations": [
+        "The hidden AI watermark cue triggers the skill and Step 0a",
+        "Provenance signals reports U+200B ZERO WIDTH SPACE as a probable carrier with escaped context",
+        "The finding is not attributed to a vendor and is not called proof of AI authorship",
+        "The authenticity score stays high based on prose evidence and is not lowered solely because of U+200B",
+        "The report states that statistical, file, and media marks were not verified",
+        "No character is removed or normalized and no cleaned text is returned"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Check this for a hidden watermark: In my Persian example, می\u200cروم means I am going. Is that invisible character evidence of AI?",
+      "expected_output": "Unicode false-positive case. Step 0a identifies U+200C ZERO WIDTH NON-JOINER but the mandatory context audit finds it between Persian letters where it has an orthographic role. Provenance signals records it as deliberately not flagged, not as a probable carrier. The report says the character is not evidence of AI, does not alter the score, does not infer a vendor, and is not removed or normalized.",
+      "files": [],
+      "expectations": [
+        "The watermark cue triggers the skill and Step 0a",
+        "U+200C is recognized as an orthographic Persian script joiner",
+        "Provenance signals records the character as deliberately not flagged",
+        "The character is not treated as evidence of AI authorship and does not alter the prose score",
+        "No character is removed or normalized and no cleaned text is returned"
       ]
     }
   ]

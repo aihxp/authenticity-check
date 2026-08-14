@@ -5,20 +5,41 @@ is pure-prompt and ships no automated runner by design, so these results come
 from blind, isolated agent runs, not a test script. Re-run when SKILL.md,
 `references/*`, or the vendored humanizer criteria change.
 
-- Date: 2026-05-15
-- Skill version: 1.1.1
+- Baseline battery date: 2026-05-15
+- Baseline skill version: 1.1.1
 - Vendored criteria synced from humanizer commit 9632cf1
 - Method: each input run in a fresh, isolated subagent that saw only the input
   plus a pointer to SKILL.md and `references/`. Runners did not see
   `expected_output`, `expectations`, prior results, the other cases, or any
   "this is AI/human/famous" label. Grading done afterward against the literal
-  `expectations` and the six-section output contract.
+  `expectations` and the six-section output contract used by version 1.1.1.
 - Band boundaries (scoring.md Part 2 anchors): Reads human 85-100, Mixed
   signals 60-84, Reads AI-generated 0-59.
 - Status: Battery 1 6/6 PASS. Battery 2 A and B PASS. A relocated-signature
   weakness (Finding 1) was found, a first fix was falsified and reverted, a
   deeper fix was designed, applied, and verified. Battery 2 C now PASS and
   stable; no regressions.
+
+## Version 1.2.0 focused provenance forward test
+
+- Date: 2026-08-14
+- Method: two fresh isolated agents saw only a user-like prompt plus a pointer
+  to `SKILL.md` and its references. They were forbidden from reading `evals/`
+  and made no file edits. Grading happened afterward against cases 8 and 9 in
+  `evals/evals.json`.
+- Scope: focused validation of the new Step 0a provenance behavior only. The
+  older full prose battery below remains the regression baseline and was not
+  rerun in full for this feature.
+- Status: 2/2 PASS.
+
+| Case | Provenance result | Prose result | Verdict |
+|---|---|---|---|
+| 8, U+200B inside ASCII prose | Probable carrier, escaped context reported, no vendor attribution | Reads human, 96; carrier did not lower score | PASS |
+| 9, U+200C inside Persian | Deliberately not flagged as legitimate orthography | Reads human, 92; joiner did not alter score | PASS |
+
+Both reports used the seven-section version 1.2.0 contract, stated that
+statistical, file, and media marks were not verified, and returned no cleaned
+or normalized text.
 
 ## Why blind, isolated runs
 
@@ -182,7 +203,9 @@ Untouched: `references/tell-patterns.md`, `references/do-not-flag.md`,
    under `evals/` (except `evals/files/VOICE.md` for Eval 2).
 3. For source-recognition control runs, instruct the runner to judge by the
    prose only and not attribute the text to any known work or author.
-4. Grade against the case `expectations` and the six-section output contract.
+4. Grade against the case `expectations` and the output contract current for
+   the tested version. Version 1.2.0 uses seven sections, including
+   `Provenance signals`.
    Regression set for the relocated-signature fix (run blind, all four must
    hold): Comparison C must read Reads AI-generated 0-59 and be stable across
    at least two runs; Eval 3 and Comparison B must stay Reads human, high,

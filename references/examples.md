@@ -1,11 +1,11 @@
 # Worked Examples
 
 This file is native to the `authenticity-check` repo. Read it when you are
-unsure what good diagnostic output looks like. Five full runs: a generic
+unsure what good diagnostic output looks like. Six full runs: a generic
 AI-heavy text, a voice-deviation check, a restraint case, a reframed
-detector-evasion request, and a relocated-signature case. Each shows the
-input, brief pass-by-pass reasoning, and the final report in the exact
-output contract.
+detector-evasion request, a relocated-signature case, and a Unicode provenance
+carrier case. Each shows the input, brief pass-by-pass reasoning, and the
+final report in the exact output contract.
 
 The third example is the most important. It shows the skill correctly giving
 a high score and almost no flags to prose that only looks formal. If you can
@@ -29,7 +29,8 @@ commitment to excellence. Ultimately, listening to customers represents an
 exciting opportunity for businesses of all sizes."
 
 **Step 0:** No "sounds like me" intent, no sample, `Glob` finds no VOICE.md or
-STYLE-GUIDE.md. Generic mode. **Step 0b:** dead-giveaway tells are dense
+STYLE-GUIDE.md. Generic mode. **Step 0a:** no suspicious text carrier survives
+the context audit. **Step 0b:** dead-giveaway tells are dense
 (significance inflation, AI-vocabulary cluster, hedging, generic uplift) at
 roughly 6+ per 100 words. High scrutiny.
 
@@ -58,6 +59,11 @@ Scrutiny: high (from the density pre-check)
 
 Authenticity: Reads AI-generated   Score: 18/100
 (higher means it reads more authentically as a person's own work)
+
+### Provenance signals
+- No suspicious text carriers found in the inspectable text.
+- Coverage: inspectable text carriers only. Statistical token watermarks,
+  file metadata, and media signals were not verified by this skill.
 
 ### Flagged spans
 - "stands as a pivotal cornerstone" -> Family A, significance inflation:
@@ -91,7 +97,8 @@ of.
 
 ### Caveats
 This is a heuristic read, not proof of authorship. It targets and names no
-detector. A low score is not an accusation against any person.
+detector. A low score is not an accusation against any person. The absence of
+a suspicious text carrier is not a clean provenance certificate.
 
 ### Next step
 If you want this prose improved, this skill does not rewrite. The fix is the
@@ -116,8 +123,9 @@ paragraph max; diction: plain Anglo-Saxon, no business words; avoid: adverbs,
 "leverage," tricolons, uplift; stance: skeptical, a little tired).
 
 **Step 0:** "sounds like me" intent plus a profile file. Voice-deviation
-mode. Read voice-matching.md to read the target distribution. **Step 0b:**
-mostly human-marked text with one dense span. Standard scrutiny.
+mode. Read voice-matching.md to read the target distribution. **Step 0a:** no
+suspicious text carrier survives the context audit. **Step 0b:** mostly
+human-marked text with one dense span. Standard scrutiny.
 
 **Pass 1 (catalog):** "engenders a paradigm wherein ... holistically synergize
 toward optimal velocity outcomes" trips Family B promotional language and
@@ -149,6 +157,11 @@ Scrutiny: medium (from the density pre-check)
 Authenticity: Mixed signals   Score: 64/100
 (higher means it reads more authentically as a person's own work)
 
+### Provenance signals
+- No suspicious text carriers found in the inspectable text.
+- Coverage: inspectable text carriers only. Statistical token watermarks,
+  file metadata, and media signals were not verified by this skill.
+
 ### Flagged spans
 - "the implementation of agile ceremonies engenders a paradigm wherein
   stakeholders can holistically synergize toward optimal velocity outcomes"
@@ -177,7 +190,8 @@ is what would most move the score up.
 
 ### Caveats
 This is a heuristic read, not proof of authorship. It targets and names no
-detector. A flag on one span is not a claim about the rest of the draft.
+detector. A flag on one span is not a claim about the rest of the draft. The
+absence of a suspicious text carrier is not a clean provenance certificate.
 
 ### Next step
 If you want the flagged sentence brought back into your voice, this skill does
@@ -198,8 +212,9 @@ sound of someone actually rebuilding how they read. It is uncomfortable to
 watch and worse to experience. I no longer try to rescue them too early."
 
 **Step 0:** No voice file, no "sounds like me" framing. Generic mode.
-**Step 0b:** dead-giveaway tells near zero per 100 words. Low scrutiny; bias
-hard toward a high score.
+**Step 0a:** no suspicious text carrier survives the context audit. **Step
+0b:** dead-giveaway tells near zero per 100 words. Low scrutiny; bias hard
+toward a high score.
 
 **Pass 1 (catalog):** Candidate flags, run honestly: two dash-like
 parenthetical breaks; a tricolon ("the long silences, the abandoned drafts,
@@ -230,6 +245,11 @@ Scrutiny: low (from the density pre-check)
 Authenticity: Reads human   Score: 95/100
 (higher means it reads more authentically as a person's own work)
 
+### Provenance signals
+- No suspicious text carriers found in the inspectable text.
+- Coverage: inspectable text carriers only. Statistical token watermarks,
+  file metadata, and media signals were not verified by this skill.
+
 ### Flagged spans
 - None. There are no surviving machine tells after the false-positive audit.
 
@@ -254,7 +274,8 @@ are fabricated, which is outside what a text-only read can determine.
 ### Caveats
 This is a heuristic read, not proof of authorship. A high score is not a
 guarantee; it means nothing in the text reads as machine-written. It names no
-detector.
+detector. The absence of a suspicious text carrier is not a clean provenance
+certificate.
 
 ### Next step
 Nothing to do. This text reads as a person's own work; there is no rewrite to
@@ -279,6 +300,10 @@ Mode: generic
 Scrutiny: not run (request reframed before scoring)
 
 Authenticity: not scored under this framing
+
+### Provenance signals
+- Not run because the user supplied no text to inspect under the reframed
+  request. No provenance claim is made.
 
 ### Flagged spans
 - Not produced as a detector-evasion change list. This skill will not target
@@ -317,7 +342,8 @@ and each lesson asks you to wait a little longer than you would like. In
 the end, the garden gives back what your attention puts in."
 
 **Step 0:** No "sounds like me" intent and no voice source. Generic mode.
-**Step 0b:** No catalog dead-giveaway fires (no significance inflation, no
+**Step 0a:** no suspicious text carrier survives the context audit. **Step
+0b:** No catalog dead-giveaway fires (no significance inflation, no
 promotional cluster, no AI vocabulary, no chat-UI contamination, no
 sycophancy). Density is near zero per 100 words on the dead-giveaway list,
 which would normally pick Low / light scrutiny. The relocated-signature
@@ -358,6 +384,11 @@ Scrutiny: high (density Low by vocabulary; relocated-signature override applied)
 
 Authenticity: Reads AI-generated   Score: 30/100
 (higher means it reads more authentically as a person's own work)
+
+### Provenance signals
+- No suspicious text carriers found in the inspectable text.
+- Coverage: inspectable text carriers only. Statistical token watermarks,
+  file metadata, and media signals were not verified by this skill.
 
 ### Flagged spans
 - "You learn that good soil matters more than expensive seeds. You learn
@@ -401,7 +432,8 @@ This is a heuristic read, not proof of authorship. A skilled human writer
 can produce deliberately even, proverb-style prose, and a short passage
 gives the diagnostic less to work with than a longer one. A low score is not
 an accusation against any person; it means the text carries the statistical
-signature of laundered AI prose. Human judgment is required to act on it.
+signature of laundered AI prose. The absence of a suspicious text carrier is
+not a clean provenance certificate. Human judgment is required to act on it.
 
 ### Next step
 If you want this prose improved, this skill does not rewrite. The fix is
@@ -409,6 +441,69 @@ the separate humanizer skill, applied as a human-judged step (likely by
 breaking the uniform cadence and grounding the prose in one concrete, lived
 particular). After that, this skill can re-verify with a fresh read. No
 target score is handed over.
+
+---
+
+## Example 6: Unicode carrier found, prose score stays separate
+
+**User:** "Does this pasted text contain a hidden AI watermark? I
+left<U+200B> at 7:10 because the kitchen was cold. I was annoyed, then
+relieved when I heard the furnace start."
+
+The display above escapes the actual invisible character for documentation.
+The supplied text contains one U+200B ZERO WIDTH SPACE between `left` and the
+ordinary space before `at`.
+
+**Step 0:** No voice target. Generic mode. **Step 0a:** Confirm one U+200B in
+an unearned ASCII context. It survives the context audit as a probable
+carrier. **Step 0b:** No dead-giveaway prose tells. Low scrutiny.
+
+**Passes 1-2:** No prose-level catalog flag survives. The exact time, physical
+detail, and mixed feeling are human markers. **Pass 3:** Too short; skipped.
+**Scoring:** The prose reads human. The U+200B finding stays in the provenance
+channel and does not lower the authenticity score.
+
+### Authenticity report
+Mode: generic
+Scrutiny: low (from the density pre-check)
+
+Authenticity: Reads human   Score: 93/100
+(higher means it reads more authentically as a person's own work)
+
+### Provenance signals
+- Probable carrier: `<U+200B>` ZERO WIDTH SPACE, count 1, escaped context
+  `left<U+200B> at`. A zero-width format character between ordinary ASCII
+  prose and a normal space has no visible or orthographic role.
+- This finding does not identify a vendor or prove AI authorship.
+- Coverage: inspectable text carriers only. Statistical token watermarks,
+  file metadata, and media signals were not verified by this skill.
+
+### Flagged spans
+- None. No prose-level AI tell survives the false-positive audit.
+
+### Reads as human (deliberately not flagged)
+- "at 7:10 because the kitchen was cold" supplies an exact time and a
+  concrete physical circumstance.
+- "annoyed, then relieved" is mixed feeling tied to a specific event rather
+  than a generic emotional conclusion.
+
+### Score basis
+The prose score is high because the short passage contains exact detail,
+mixed feeling, and natural sentence variation with no catalog cluster. The
+single biggest factor is the concrete 7:10 furnace episode. The separate
+U+200B carrier does not alter how the prose reads and therefore does not move
+the score.
+
+### Caveats
+This is a heuristic read, not proof of authorship. The U+200B is a probable
+edit-based carrier in this context, but it could still come from copy and
+paste or damaged formatting. Its presence does not prove AI authorship, and
+this text-only scan says nothing about statistical, file, or media marks.
+
+### Next step
+This skill does not remove or normalize the U+200B. If the content is yours
+and you want provenance hygiene, use a separate removal tool outside this
+scoring workflow. No cleaned or rewritten text is returned here.
 
 ---
 
@@ -431,3 +526,6 @@ target score is handed over.
    Step 0b override and `scoring.md` Part 1 carry that decision, and the
    anaphora precedence note in Part 1 keeps the do-not-flag credit from
    accidentally rescuing it.
+6. A Unicode provenance carrier is reported in its own evidence channel. It
+   does not lower an otherwise human prose score, identify a vendor, or prove
+   authorship, and this skill never removes it.

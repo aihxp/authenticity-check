@@ -9,6 +9,12 @@ strength of evidence in one glance, then hand the reader to the flags and the
 caveat. Never present it as proof of authorship, and never tune it against any
 detector.
 
+Step 0a provenance findings are a separate evidence channel. Do not move the
+authenticity score because an invisible Unicode carrier was found or absent.
+The score measures how the prose reads through cadence, diction, structure,
+specificity, internal consistency, and voice. Report provenance in its own
+section and score only the prose evidence from Passes 1-4.
+
 ## Part 1: The bands
 
 Three bands. The vocabulary is chosen on purpose to sit alongside the

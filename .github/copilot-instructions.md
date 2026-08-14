@@ -3,30 +3,36 @@
 This repository is the `authenticity-check` skill: pure-prompt instructions
 that score how authentically a piece of text reads as the work of a real
 human author and flag the spans that read as AI-generated, AI-templated, or
-generically derivative. It is the evaluative counterpart to the separate
+generically derivative, plus suspicious Unicode provenance carriers in the
+supplied text. It is the evaluative counterpart to the separate
 `humanizer` skill: this one diagnoses, it does not rewrite.
 
 When a request is to judge whether text is authentic, whether it reads like
 an LLM or like a person, how human a passage sounds, which parts sound
-machine-written, or whether a draft still sounds like the author or a named
-writer (including doc comments, READMEs, and release notes that read
-machine-written), follow this skill. Apply it even when the words "authenticity
-check" are not used. Do not follow this skill for transformative requests
-(humanize, de-slop, de-AI, rewrite, fix, make it sound like X); those belong
-to the separate `humanizer` skill.
+machine-written, whether a draft still sounds like the author or a named
+writer, or whether pasted text contains a hidden AI watermark or invisible
+Unicode (including doc comments, READMEs, and release notes), follow this
+skill. Apply it even when the words "authenticity check" are not used. Do not
+follow this skill for transformative requests (humanize, de-slop, de-AI,
+rewrite, fix, remove marks, make it sound like X); those belong to a separate
+transformation or provenance hygiene skill.
 
 Read `SKILL.md` at the repository root and follow it exactly, with
 `references/tell-patterns.md` (32 patterns, six families),
-`references/do-not-flag.md`, and, in voice-deviation mode only,
+`references/do-not-flag.md`, `references/provenance-signals.md` when needed,
+and, in voice-deviation mode only,
 `references/voice-matching.md`. Use the method as written: Step 0 baseline
-discovery, Step 0b density pre-check, then the multi-pass diagnostic (catalog
+discovery, Step 0a provenance preflight, Step 0b density pre-check, then the
+multi-pass diagnostic (catalog
 scan, mandatory false-positive audit with veto power, read-only
 internal-consistency heuristics, voice deviation if a voice target exists),
 and emit the exact output contract: Authenticity report (band plus 0-100
-score) / Flagged spans / Reads as human / Score basis / Caveats / Next step.
+score) / Provenance signals / Flagged spans / Reads as human / Score basis /
+Caveats / Next step.
 
-Hard rule: this skill scores and flags only. It never rewrites, edits, or
-returns improved prose, not even one suggested span; the rewrite is the
+Hard rule: this skill scores and flags only. It never rewrites, edits, removes
+or normalizes Unicode, strips metadata, or returns improved prose, not even
+one suggested span; the rewrite is the
 separate `humanizer` skill's job, run as a human-judged step, with no target
 score carried into it. A combined score-then-rewrite loop is detector-gaming,
 which humanizer refuses. This skill is not for defeating AI-detection

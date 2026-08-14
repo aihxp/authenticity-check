@@ -3,6 +3,47 @@
 All notable changes to this skill are documented here. This project adheres
 to semantic versioning.
 
+## [1.2.0] - 2026-08-14
+
+Read-only text provenance preflight inspired by the MIT-licensed
+`watermarks-remover` project. This release adds useful watermark inspection
+without crossing the skill's diagnostic-only boundary.
+
+### Added
+
+- Step 0a provenance preflight for suspicious invisible and format Unicode,
+  including zero-width controls, bidi controls, tag characters, variation
+  selectors, unusual spaces, and other format characters.
+- `references/provenance-signals.md` with carrier classes, escaped-codepoint
+  reporting, a mandatory multilingual and visible-sequence context audit,
+  confidence labels, and coverage limits.
+- A required `Provenance signals` report section kept separate from the prose
+  authenticity score.
+- Eval cases for a suspicious U+200B carrier and a legitimate Persian U+200C
+  script joiner.
+- A focused blind forward test of those two cases, recorded as 2/2 PASS in
+  `evals/RESULTS.md`.
+
+### Changed
+
+- Skill and adapter triggers now include hidden AI watermark, invisible
+  Unicode, and text-provenance questions.
+- The output contract now has seven sections. Existing examples record a
+  clean provenance preflight, and a new worked example demonstrates a carrier
+  finding without lowering an otherwise human prose score.
+- The host compatibility list moved under `metadata` so the skill frontmatter
+  conforms to the current validator schema without losing the information.
+- `SKILL.md` metadata and the README badge moved to 1.2.0.
+
+### Boundaries retained
+
+- No removal, normalization, metadata stripping, file rewrite, model rewrite,
+  script, dependency, or network access was added.
+- Statistical token-sampling watermarks, C2PA, EXIF, XMP, document properties,
+  pixel-domain marks, audio, and video remain outside this text-only scan.
+- A carrier is not treated as proof of AI authorship, and its presence or
+  absence does not move the authenticity score by itself.
+
 ## [1.1.1] - 2026-05-29
 
 Audit-and-fix patch. Re-vendor verification against humanizer current main

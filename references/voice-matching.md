@@ -4,7 +4,7 @@ VENDORED FILE - SYNCED COPY, NOT THE SOURCE OF TRUTH
 =============================================================================
 
 Canonical upstream: the `humanizer` repo, references/voice-matching.md
-  (github.com/aihxp/humanizer).
+  (github.com/hannsxpeter/humanizer).
 
 This is a verbatim synced copy vendored into the `authenticity-check` repo.
 It is vendored because authenticity-check is a standalone repo and the

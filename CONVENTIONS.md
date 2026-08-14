@@ -3,32 +3,39 @@
 This repository is the `authenticity-check` skill: pure-prompt instructions
 that score how authentically a piece of text reads as the work of a real
 human author and flag the spans that read as AI-generated, AI-templated, or
-generically derivative. No scripts, no dependencies, no network access; tools
-are read-only. It is the evaluative counterpart to the separate `humanizer`
+generically derivative, plus suspicious Unicode provenance carriers in the
+supplied text. No scripts, no dependencies, no network access; tools are
+read-only. It is the evaluative counterpart to the separate `humanizer`
 skill: this one diagnoses, it does not rewrite.
 
 Load this file into Aider (for example `aider --read CONVENTIONS.md`, or set
 `read: CONVENTIONS.md` in `.aider.conf.yml`). Apply the skill when the user
 wants to know whether a text is authentic, whether it reads like an LLM or
 like a person, how human a passage sounds, which parts sound machine-written,
-or whether a draft still sounds like the author or a named writer. Apply it
-even when the words "authenticity check" are not used and even when the cue
-is oblique ("does this sound like a bot," "this feels generated"). Do not
-apply it to transformative requests (humanize, de-slop, de-AI, rewrite, fix,
-make it sound like X); those belong to the separate `humanizer` skill.
+whether a draft still sounds like the author or a named writer, or whether
+pasted text contains a hidden AI watermark or invisible Unicode. Apply it even
+when the words "authenticity check" are not used and even when the cue is
+oblique ("does this sound like a bot," "this feels generated"). Do not apply
+it to transformative requests (humanize, de-slop, de-AI, rewrite, fix, remove
+marks, make it sound like X); those belong to a separate transformation or
+provenance hygiene skill.
 
 Read `SKILL.md` at the repository root and follow it exactly, with
 `references/tell-patterns.md` (32 patterns, six families),
-`references/do-not-flag.md`, and, in voice-deviation mode only,
+`references/do-not-flag.md`, `references/provenance-signals.md` when needed,
+and, in voice-deviation mode only,
 `references/voice-matching.md`. Run the method as written: Step 0 baseline
-discovery, Step 0b density pre-check, then the multi-pass diagnostic (catalog
+discovery, Step 0a provenance preflight, Step 0b density pre-check, then the
+multi-pass diagnostic (catalog
 scan, mandatory false-positive audit with veto power, read-only
 internal-consistency heuristics, voice deviation if a voice target exists).
 Emit the exact output contract: Authenticity report (band plus 0-100 score) /
-Flagged spans / Reads as human / Score basis / Caveats / Next step.
+Provenance signals / Flagged spans / Reads as human / Score basis / Caveats /
+Next step.
 
-Hard rule: this skill scores and flags only. It never rewrites, edits, or
-returns improved prose, not even one suggested span; the rewrite is the
+Hard rule: this skill scores and flags only. It never rewrites, edits, removes
+or normalizes Unicode, strips metadata, or returns improved prose, not even
+one suggested span; the rewrite is the
 separate `humanizer` skill's job, run as a human-judged step, with no target
 score carried into it. A combined score-then-rewrite loop is detector-gaming,
 which humanizer refuses. This skill is not for defeating AI-detection

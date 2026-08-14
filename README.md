@@ -1,6 +1,6 @@
 # authenticity-check
 
-![version](https://img.shields.io/badge/version-1.1.1-blue)
+![version](https://img.shields.io/badge/version-1.2.0-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![type](https://img.shields.io/badge/type-pure--prompt%20skill-purple)
 ![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
@@ -10,9 +10,11 @@
 
 A standalone, pure-prompt skill that scores how authentically a piece of text
 reads as the work of a real human author, and flags the specific spans that
-read as AI-generated, AI-templated, or generically derivative. It is just
-instructions: `SKILL.md` plus a few reference files. No scripts, no
-dependencies, no network access. Its tools are read-only by design.
+read as AI-generated, AI-templated, or generically derivative. It also scans
+supplied text for suspicious Unicode provenance carriers and reports them in
+a separate evidence channel. It is just instructions: `SKILL.md` plus a few
+reference files. No scripts, no dependencies, no network access. Its tools
+are read-only by design.
 
 It is the evaluative counterpart to the `humanizer` skill. This one
 diagnoses. It does not rewrite.
@@ -21,10 +23,10 @@ diagnoses. It does not rewrite.
 
 This skill is the diagnostic half of a pair. Its detection criteria descend
 from the voice-preservation logic that powers
-[Scriveno](https://github.com/aihxp/scriveno) (formerly Scriven), an
+[Scriveno](https://github.com/hannsxpeter/scriveno) (formerly Scriven), an
 AI-native longform writing, publishing, and translation pipeline whose core
 promise is that drafted prose should sound like the writer, not like AI.
-[`humanizer`](https://github.com/aihxp/humanizer) lifted the de-slop,
+[`humanizer`](https://github.com/hannsxpeter/humanizer) lifted the de-slop,
 restraint, and voice-matching layer of that pipeline into a standalone
 rewrite skill. `authenticity-check` is the read-only counterpart: it applies
 the same catalog and the same restraint to *diagnose* rather than transform,
@@ -41,6 +43,7 @@ Given a piece of text, it returns:
   work),
 - span-level flags, each with the reason it reads as AI-generated,
   AI-templated, or derivative,
+- a read-only provenance preflight for suspicious invisible or format Unicode,
 - a "Reads as human" section naming what it deliberately did not flag,
 - and a caveat that the score is a heuristic read, not proof.
 
@@ -48,9 +51,30 @@ It runs in generic mode by default, and in a voice-deviation mode when you
 ask whether a draft still sounds like you (or a named author) and a voice
 sample or profile is available.
 
+## Text provenance preflight
+
+Every run includes a separate scan for inspectable text carriers such as
+zero-width and format controls, bidi controls, tag characters, variation
+selectors, and unusual spaces. Candidate characters go through a mandatory
+context audit so normal multilingual orthography, directional text,
+byte-order marks, and load-bearing visible sequences are not mislabeled.
+
+This feature borrows the carrier taxonomy and false-positive guardrails from
+the MIT-licensed
+[`watermarks-remover`](https://github.com/guillaumemeyer/watermarks-remover)
+project while preserving this repository's read-only contract. It reports
+escaped codepoints and context, but it never deletes, normalizes, rewrites, or
+re-saves the text.
+
+The preflight covers deterministic carriers visible in supplied text. It is
+not a statistical token-watermark detector, and it does not inspect C2PA,
+EXIF, XMP, document properties, images, audio, or video. Provenance findings
+are reported separately and do not change the prose authenticity score by
+themselves.
+
 ## The pairing with humanizer (a pair, never a merge)
 
-`authenticity-check` and [`humanizer`](https://github.com/aihxp/humanizer)
+`authenticity-check` and [`humanizer`](https://github.com/hannsxpeter/humanizer)
 are designed to be used together, as separate skills, with a human deciding
 between them:
 
@@ -139,8 +163,9 @@ present (`AGENTS.md` or the Continue rule); no Zed-specific adapter is needed.
 
 Ask, in plain language, whether a text is authentic, whether it reads like AI
 or like a person, how human a passage sounds, which parts sound
-machine-written, or whether your draft still sounds like you. You do not need
-to say "authenticity check." Oblique cues ("does this sound like a bot,"
+machine-written, whether your draft still sounds like you, or whether pasted
+text contains a hidden AI watermark or invisible Unicode. You do not need to
+say "authenticity check." Oblique cues ("does this sound like a bot,"
 "something about this feels generated") trigger it too.
 
 For a "does this still sound like me" check, do one of:
@@ -150,15 +175,16 @@ For a "does this still sound like me" check, do one of:
 - keep a `VOICE.md` (schema in `references/voice-matching.md`) or a
   `STYLE-GUIDE.md` in the project; it is discovered automatically.
 
-Every run returns the report: band and score, flagged spans, what was
-deliberately not flagged, the score basis, a caveat, and a next step. It
-never returns rewritten prose.
+Every run returns the report: band and score, provenance signals, flagged
+spans, what was deliberately not flagged, the score basis, a caveat, and a
+next step. It never returns rewritten or cleaned prose.
 
 ## Verification
 
-`evals/evals.json` holds the verification cases (an AI-heavy text, a
-voice-deviation check, a restraint case, a detector-evasion refusal, an
-oblique trigger, and a diagnose-then-"just fix it" boundary). `evals/RESULTS.md`
+`evals/evals.json` holds the verification cases (AI-heavy text,
+voice deviation, restraint, detector-evasion refusal, an oblique trigger, a
+diagnose-then-"just fix it" boundary, a relocated signature, a suspicious
+Unicode carrier, and a legitimate script joiner). `evals/RESULTS.md`
 records a blind verification battery: every case run as an isolated diagnosis
 with no access to the expected answer, plus a known-vs-non-known battery and a
 relocated-signature regression set. The regression set exists because the
@@ -176,13 +202,13 @@ short marker-free uniform inputs in the low band.
 ## Scope
 
 This skill gives an honest read of how authentically text reads as a person's
-work. It is not designed or tuned to defeat plagiarism checkers or
-AI-detection systems, and it names no detector. Requests framed as getting
-AI work past a graded or contractual assessment are reframed toward the honest
-diagnostic the skill actually serves. The diagnostic-only boundary is part of
-that guarantee: because the skill never rewrites and never carries a score
-into a transformation, it cannot be turned into a score-then-rewrite gaming
-loop.
+work and a read-only report of inspectable text-provenance carriers. It is not
+designed or tuned to defeat plagiarism checkers or AI-detection systems, and
+it names no detector. Requests framed as getting AI work past a graded or
+contractual assessment are reframed toward the honest diagnostic the skill
+actually serves. The diagnostic-only boundary is part of that guarantee:
+because the skill never rewrites, removes provenance, or carries a score into
+a transformation, it cannot be turned into a score-then-rewrite gaming loop.
 
 ## Layout
 
@@ -199,8 +225,9 @@ CONVENTIONS.md                    Aider conventions
 references/tell-patterns.md       vendored, synced from humanizer: the 32-pattern catalog (Pass 1)
 references/do-not-flag.md         vendored, synced from humanizer: false positives, human markers (Pass 2)
 references/voice-matching.md      vendored, synced from humanizer: voice reading (Pass 4)
+references/provenance-signals.md  native: Unicode provenance classes, context audit, limits (Step 0a)
 references/scoring.md             native: band + 0-100 rubric, internal-consistency heuristics
-references/examples.md            native: four worked diagnostic runs
+references/examples.md            native: six worked diagnostic runs
 evals/evals.json                  verification cases (not part of the runtime skill)
 evals/files/VOICE.md              voice baseline used by the voice-deviation eval
 ```
