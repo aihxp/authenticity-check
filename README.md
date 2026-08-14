@@ -6,7 +6,7 @@
 ![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
 ![mode](https://img.shields.io/badge/mode-diagnostic%20only-red)
 ![tools](https://img.shields.io/badge/works%20with-13%20AI%20coding%20tools-teal)
-![release](https://img.shields.io/github/v/release/aihxp/authenticity-check?label=release&color=blue)
+![release](https://img.shields.io/github/v/release/hannsxpeter/authenticity-check?label=release&color=blue)
 
 A standalone, pure-prompt skill that scores how authentically a piece of text
 reads as the work of a real human author, and flags the specific spans that
@@ -185,19 +185,18 @@ next step. It never returns rewritten or cleaned prose.
 voice deviation, restraint, detector-evasion refusal, an oblique trigger, a
 diagnose-then-"just fix it" boundary, a relocated signature, a suspicious
 Unicode carrier, and a legitimate script joiner). `evals/RESULTS.md`
-records a blind verification battery: every case run as an isolated diagnosis
-with no access to the expected answer, plus a known-vs-non-known battery and a
-relocated-signature regression set. The regression set exists because the
-hardest case is the one that matters most: AI prose with the slop vocabulary
-removed but the uniform rhythm kept must still read low, while genuine careful
-human prose, even when formal and clean, must not be over-flagged. These files
-are documentation and verification only; they are not part of the runtime
-skill.
+records the full v1.1.1 prose regression baseline and the focused v1.2.0
+provenance forward test. Every recorded run used an isolated diagnosis with no
+access to the expected answer. The regression set exists because the hardest
+case is the one that matters most: AI prose with the slop vocabulary removed
+but the uniform rhythm kept must still read low, while genuine careful human
+prose, even when formal and clean, must not be over-flagged. These files are
+documentation and verification only; they are not part of the runtime skill.
 
 On short inputs (a single paragraph or two), the internal-consistency pass
-(Pass 3) needs at least three comparable chunks and is skipped; Step 0b plus
-Passes 1-2 carry the read, with the relocated-signature override holding
-short marker-free uniform inputs in the low band.
+(Pass 3) needs at least three comparable chunks and is skipped; Step 0a,
+Step 0b, and Passes 1-2 carry the read, with the relocated-signature override
+holding short marker-free uniform inputs in the low band.
 
 ## Scope
 

@@ -33,6 +33,9 @@ without crossing the skill's diagnostic-only boundary.
   finding without lowering an otherwise human prose score.
 - The host compatibility list moved under `metadata` so the skill frontmatter
   conforms to the current validator schema without losing the information.
+- The README release badge now follows the current GitHub owner, and its
+  verification section distinguishes the v1.1.1 baseline from the focused
+  v1.2.0 provenance test.
 - `SKILL.md` metadata and the README badge moved to 1.2.0.
 
 ### Boundaries retained
