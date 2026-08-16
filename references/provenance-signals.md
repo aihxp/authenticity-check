@@ -9,7 +9,10 @@ The carrier taxonomy and context guardrails are adapted at the class level
 from [watermarks-remover](https://github.com/guillaumemeyer/watermarks-remover),
 version 0.4.0 at source commit `28eca2d91fd4`, inspected 2026-08-14 under its
 MIT license. This skill keeps only the read-only inspection half. It does not
-copy the remover workflow, clean files, or rewrite text.
+copy the remover workflow, clean files, or rewrite text. This source note
+records a point-in-time taxonomy adaptation, not a fork, wrapper, service
+integration, or promise of compatibility or feature parity with later
+upstream releases.
 
 ## What this preflight can establish
 

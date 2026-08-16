@@ -3,11 +3,42 @@
 All notable changes to this skill are documented here. This project adheres
 to semantic versioning.
 
+## [1.2.1] - 2026-08-15
+
+Documentation-only patch clarifying the exact relationship between the
+v1.2.0 provenance preflight and `watermarks-remover`. Skill behavior is
+unchanged.
+
+### Changed
+
+- Added an included-versus-excluded feature table to the README.
+- Replaced broad watermark language with the precise capability: read-only
+  inspection of suspicious Unicode carrier candidates exposed in supplied
+  text.
+- Documented that the v1.2.0 work adapted only the Unicode carrier taxonomy
+  and context guardrails from upstream v0.4.0 at commit `28eca2d91fd4`.
+- Made clear that this repository is not a port, wrapper, or integration of
+  the upstream project and does not promise ongoing feature parity.
+- Explicitly excluded upstream executable code and services, content
+  mutation, binary and metadata handling, statistical token-watermark
+  handling, and image-watermark handling.
+- Bumped the skill metadata and README badge to 1.2.1.
+
+### Verification
+
+- Documentation claims were checked against `SKILL.md`,
+  `references/provenance-signals.md`, the repository surface, and the v1.2.0
+  focused provenance eval record.
+- No runtime instructions, scoring behavior, dependencies, tools, or eval
+  outcomes changed, so the existing v1.2.0 behavior checks remain applicable.
+
 ## [1.2.0] - 2026-08-14
 
-Read-only text provenance preflight inspired by the MIT-licensed
-`watermarks-remover` project. This release adds useful watermark inspection
-without crossing the skill's diagnostic-only boundary.
+Version 1.2.0 adds a read-only, pure-prompt Unicode carrier preflight adapted
+only at the taxonomy and context-guardrail level from the MIT-licensed
+`watermarks-remover` project. It classifies and reports inspectable carrier
+candidates in supplied text without crossing the skill's diagnostic-only
+boundary.
 
 ### Added
 
@@ -38,12 +69,18 @@ without crossing the skill's diagnostic-only boundary.
   v1.2.0 provenance test.
 - `SKILL.md` metadata and the README badge moved to 1.2.0.
 
-### Boundaries retained
+### Source relationship and boundaries
 
-- No removal, normalization, metadata stripping, file rewrite, model rewrite,
-  script, dependency, or network access was added.
-- Statistical token-sampling watermarks, C2PA, EXIF, XMP, document properties,
-  pixel-domain marks, audio, and video remain outside this text-only scan.
+- Only the Unicode carrier taxonomy and context guardrails were adapted from
+  `watermarks-remover` v0.4.0 at source commit `28eca2d91fd4`. No deterministic
+  Python scripts, services, or other upstream executable code were imported.
+- No content removal, normalization, substitution, rewriting, or re-saving
+  was added. The skill remains read-only and pure-prompt, with no dependencies
+  or network access.
+- Binary-file inspection and C2PA, EXIF, XMP, and document-metadata inspection
+  or stripping remain outside the skill.
+- Statistical token-watermark detection or removal, image-watermark scoring or
+  removal, pixel-domain marks, audio, and video remain outside the skill.
 - A carrier is not treated as proof of AI authorship, and its presence or
   absence does not move the authenticity score by itself.
 

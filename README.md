@@ -1,6 +1,6 @@
 # authenticity-check
 
-![version](https://img.shields.io/badge/version-1.2.0-blue)
+![version](https://img.shields.io/badge/version-1.2.1-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![type](https://img.shields.io/badge/type-pure--prompt%20skill-purple)
 ![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
@@ -59,16 +59,24 @@ selectors, and unusual spaces. Candidate characters go through a mandatory
 context audit so normal multilingual orthography, directional text,
 byte-order marks, and load-bearing visible sequences are not mislabeled.
 
-This feature borrows the carrier taxonomy and false-positive guardrails from
-the MIT-licensed
+Version 1.2.0 adapted only the Unicode carrier taxonomy and context guardrails
+from the MIT-licensed
 [`watermarks-remover`](https://github.com/guillaumemeyer/watermarks-remover)
-project while preserving this repository's read-only contract. It reports
-escaped codepoints and context, but it never deletes, normalizes, rewrites, or
-re-saves the text.
+project. Those two elements are represented here as pure-prompt instructions
+for a read-only inspection of supplied text. The link is source attribution,
+not a claim that this skill ports, wraps, or integrates the upstream tool.
+This is a point-in-time adaptation from upstream v0.4.0 at commit
+`28eca2d91fd4`, not an ongoing feature-parity or compatibility promise.
 
-The preflight covers deterministic carriers visible in supplied text. It is
-not a statistical token-watermark detector, and it does not inspect C2PA,
-EXIF, XMP, document properties, images, audio, or video. Provenance findings
+| Included in `authenticity-check` v1.2.0 | Not included |
+|---|---|
+| Unicode carrier classes and a mandatory context audit | Deterministic Python scripts, services, or other upstream executable code |
+| Escaped-codepoint and context reporting | Deletion, normalization, substitution, rewriting, or re-saving content |
+| Inspection of carrier candidates exposed in supplied text | Binary-file inspection or C2PA, EXIF, XMP, and document-metadata inspection or stripping |
+| A provenance evidence channel separate from the prose score | Statistical token-watermark detection or removal, and image-watermark scoring or removal |
+
+The preflight considers only carrier candidates that the agent can inspect in
+supplied text. It does not inspect images, audio, or video. Provenance findings
 are reported separately and do not change the prose authenticity score by
 themselves.
 
@@ -164,9 +172,10 @@ present (`AGENTS.md` or the Continue rule); no Zed-specific adapter is needed.
 Ask, in plain language, whether a text is authentic, whether it reads like AI
 or like a person, how human a passage sounds, which parts sound
 machine-written, whether your draft still sounds like you, or whether pasted
-text contains a hidden AI watermark or invisible Unicode. You do not need to
-say "authenticity check." Oblique cues ("does this sound like a bot,"
-"something about this feels generated") trigger it too.
+text contains suspicious invisible Unicode that might carry a provenance
+mark. You do not need to say "authenticity check." Oblique cues
+("does this sound like a bot," "something about this feels generated")
+trigger it too.
 
 For a "does this still sound like me" check, do one of:
 
